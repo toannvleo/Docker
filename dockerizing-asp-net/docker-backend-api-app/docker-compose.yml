@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  
+  mosapi:
+    image: i_backend_mos
+    container_name: c_backend_mos
+    build:
+      context: .
+      dockerfile: ./docker/mos/Dockerfile
+    volumes:
+      - .\backend\mos:C:\app\backend\mos
+    networks:
+      - app-net
+    ports:
+      - "8888:80"
+      
+  sarapi:
+    image: i_backend_sar
+    container_name: c_backend_sar
+    build:
+      context: .
+      dockerfile: ./docker/sar/Dockerfile
+    volumes:
+      - .\backend\sar:C:\app\backend\sar
+    networks:
+      - app-net
+    ports:
+      - "8885:80"
+      
+  sdaapi:
+    image: i_backend_sda
+    container_name: c_backend_sda
+    build:
+      context: .
+      dockerfile: ./docker/sda/Dockerfile
+    volumes:
+      - .\backend\sda:C:\app\backend\sda
+    networks:
+      - app-net
+    ports:
+      - "8886:80"
+      
+  acsapi:
+    image: i_backend_acs
+    container_name: c_backend_acs
+    build:
+      context: .
+      dockerfile: ./docker/acs/Dockerfile
+    volumes:
+      - .\backend\acs:C:\app\backend\acs
+    networks:
+      - app-net
+    ports:
+      - "8887:80"
+      
+networks:
+  app-net:
+    external:
+      name: nat
